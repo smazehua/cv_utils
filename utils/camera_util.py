@@ -2,7 +2,8 @@ import torch
 import torch.nn.functional as F
 import numpy as np
 
-
+# Plücker ray crresponding to each pixel, d representing the ray’s direction and o its origin
+# In world coordinate, o -> camera position, d -> camera position to pixel
 def get_rays(pose, h, w, focal, opengl=True):
     
     x, y = torch.meshgrid(
