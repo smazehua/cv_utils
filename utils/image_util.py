@@ -17,28 +17,21 @@ def random_point_in_mask(mask):
         if mask[y, x] == 1:
             return x, y
 
-# 示例用法
-import numpy as np
-
-mask = np.array([
-    [0, 1, 0],
-    [1, 0, 1],
-    [0, 1, 0]
-])
-
-random_point = random_point_in_mask(mask)
-print(random_point)
-
 def get_square_mask(image_mask, square_center, square_length_half):
+    
+    ## input: image_mask => numpy {0, 1}
+    ## output:square_center => numpy {0, 1}
 
     square_mask = np.zeros(image_mask.shape, np.float32)
 
     x_center, y_center = square_center[0], square_center[1]
-    x_left, y_top = x_left = x_center - square_length_half, y_center - suqare_length_half
-    x_right, y_bottom = x_center + square_length_half, y_center + suqare_length_half
+    x_left, y_top = x_center - square_length_half, y_center - square_length_half
+    x_right, y_bottom = x_center + square_length_half, y_center + square_length_half
 
-    square_mask[y_top:y_bottom, x_right:x_left] = 1
-    
+    print("mask scale:", x_left, y_top, x_right, y_bottom)
+    square_mask[y_top:y_bottom, x_left:x_right] = 1
+    # square_mask[20:300, 30:300] = 1
+    print("square max:", square_mask.max())
     return square_mask
 
 
